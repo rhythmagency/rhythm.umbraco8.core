@@ -26,7 +26,7 @@ Install with NuGet. Search for "Rhythm.Umbraco.Core".
 
 The following code sample shows how to use both `NearestAncestorOfTypes` and `ChildrenByTypePath` to get the blog articles in the current site:
 
-```
+```c#
 namespace Sample
 {
     using Rhythm.Umbraco.Core;
