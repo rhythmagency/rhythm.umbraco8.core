@@ -90,6 +90,66 @@
             return children;
         }
 
+        /// <summary>
+        /// Finds descendants of the specified content node that have the specified content types.
+        /// </summary>
+        /// <param name="source">
+        /// The parent page to start the search.
+        /// </param>
+        /// <param name="includeSelf">
+        /// Include the supplied node in the search?
+        /// </param>
+        /// <param name="typeAliases">
+        /// The aliases of the content types.
+        /// </param>
+        /// <returns>
+        /// The collection of descendants.
+        /// </returns>
+        public static List<IPublishedContent> DescendantsOfTypes(this IPublishedContent source,
+            bool includeSelf, params string[] typeAliases)
+        {
+
+            // Validate input.
+            var descendants = new List<IPublishedContent>();
+            if (source == null)
+            {
+                return descendants;
+            }
+
+            // Include the soure content node in the check for descendants?
+            if (includeSelf)
+            {
+                if (typeAliases.InvariantContains(source.DocumentTypeAlias))
+                {
+                    descendants.Add(source);
+                }
+            }
+
+            // Check children, and then their children, recursively.
+            foreach (var child in source.Children)
+            {
+
+                // This check is performed here rather than relying on the shorter
+                // recursive implementation to avoid creating a bunch of lists when
+                // working with relatively flat content trees.
+                if (typeAliases.InvariantContains(child.DocumentTypeAlias))
+                {
+                    descendants.Add(child);
+                }
+
+                // Recursively check further descendants.
+                if (child.Children.Any())
+                {
+                    descendants.AddRange(child.DescendantsOfTypes(false, typeAliases));
+                }
+
+            }
+
+            // Return the matching descendants.
+            return descendants;
+
+        }
+
         #endregion
 
     }
