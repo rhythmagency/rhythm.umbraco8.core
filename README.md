@@ -14,6 +14,7 @@ Install with NuGet. Search for "Rhythm.Umbraco.Core".
 
 * **NearestAncestorOfTypes** Searches for the nearest ancestors with the specified content types.
 * **ChildrenByTypePath** Finds the descendant children located by the specified list of content type aliases, relative to the specified page.
+* **DescendantsOfTypes** Finds the descendants by the supplied content type aliases.
 
 The following code sample shows how to use both `NearestAncestorOfTypes` and `ChildrenByTypePath` to get the blog articles in the current site:
 
