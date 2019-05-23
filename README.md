@@ -23,7 +23,7 @@ namespace Sample
 {
     using Rhythm.Umbraco.Core;
     using System.Collections.Generic;
-    using Umbraco.Core.Models;
+    using Umbraco.Core.Models.PublishedContent;
     public class ArticleHelper
     {
         public IEnumerable<IPublishedContent> GetArticles(IPublishedContent page)
