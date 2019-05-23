@@ -6,7 +6,7 @@ Refer to the [generated documentation](docs/generated.md) for more details.
 
 # Installation
 
-Install with NuGet. Search for "Rhythm.Umbraco.Core".
+Install with NuGet. Search for "Rhythm.Umbraco8.Core".
 
 # Overview
 
