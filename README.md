@@ -6,7 +6,7 @@ Refer to the [generated documentation](docs/generated.md) for more details.
 
 # Installation
 
-Install with NuGet. Search for "Rhythm.Umbraco.Core".
+Install with NuGet. Search for "Rhythm.Umbraco8.Core".
 
 # Overview
 
@@ -23,7 +23,7 @@ namespace Sample
 {
     using Rhythm.Umbraco.Core;
     using System.Collections.Generic;
-    using Umbraco.Core.Models;
+    using Umbraco.Core.Models.PublishedContent;
     public class ArticleHelper
     {
         public IEnumerable<IPublishedContent> GetArticles(IPublishedContent page)

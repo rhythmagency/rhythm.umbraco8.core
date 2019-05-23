@@ -3,7 +3,7 @@
 
     // Namespaces.
     using global::Umbraco.Core;
-    using global::Umbraco.Core.Models;
+    using global::Umbraco.Core.Models.PublishedContent;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -40,7 +40,7 @@
             }
             while (source != null)
             {
-                var alias = source.DocumentTypeAlias;
+                var alias = source.ContentType.Alias;
                 for (int i = 0; i < typeAliases.Length; i++)
                 {
                     if (typeAliases[i].InvariantEquals(alias))
@@ -80,7 +80,7 @@
                 foreach (var alias in typeAliases)
                 {
                     children = children.SelectMany(y =>
-                        y.Children.Where(x => alias.InvariantEquals(x.DocumentTypeAlias))).ToList();
+                        y.Children.Where(x => alias.InvariantEquals(x.ContentType.Alias))).ToList();
                     if (children.Count == 0)
                     {
                         break;
@@ -119,7 +119,7 @@
             // Include the soure content node in the check for descendants?
             if (includeSelf)
             {
-                if (typeAliases.InvariantContains(source.DocumentTypeAlias))
+                if (typeAliases.InvariantContains(source.ContentType.Alias))
                 {
                     descendants.Add(source);
                 }
@@ -132,7 +132,7 @@
                 // This check is performed here rather than relying on the shorter
                 // recursive implementation to avoid creating a bunch of lists when
                 // working with relatively flat content trees.
-                if (typeAliases.InvariantContains(child.DocumentTypeAlias))
+                if (typeAliases.InvariantContains(child.ContentType.Alias))
                 {
                     descendants.Add(child);
                 }
